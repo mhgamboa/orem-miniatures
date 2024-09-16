@@ -1,5 +1,6 @@
 import { Product } from "@/types";
 import NoResults from "@/components/ui/NoResults";
+import ProductCard from "@/components/ui/ProductCard";
 
 type Props = {
   title: string;
@@ -13,7 +14,7 @@ export default function ProductList({ title, items }: Props) {
       {items.length === 0 && <NoResults />}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {items.map(item => {
-          return <div key={item.id}>{item.name}</div>;
+          return <ProductCard key={item.id} data={item} />;
         })}
       </div>
     </div>
