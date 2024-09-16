@@ -21,7 +21,7 @@ export default async function getProducts(query: Query) {
       isFeatured: query.isFeatured,
     },
   });
-  const res = await fetch(URL, {
+  const res = await fetch(url, {
     next: { revalidate: 60 },
   });
 
