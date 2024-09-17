@@ -4,6 +4,8 @@ import getProduct from "@/actions/getProduct";
 import getProducts from "@/actions/getProducts";
 import Container from "@/components/ui/Container";
 import ProductList from "@/components/ProductList";
+import Gallery from "@/components/gallery/Index";
+import Info from "@/components/Info";
 
 type Props = {
   params: {
@@ -20,10 +22,9 @@ export default async function ProductPage({ params }: Props) {
       <Container>
         <div className="px-4 py-10 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
-            <div>Gallery</div>
+            <Gallery images={product.images} />
             <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
-              {/* Info */}
-              info
+              <Info data={product} />
             </div>
           </div>
           <hr className="my-10" />
