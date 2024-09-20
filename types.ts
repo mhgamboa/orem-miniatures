@@ -17,7 +17,7 @@ export interface Product {
   price: string;
   isFeatured: boolean;
   size: Size;
-  color: Color;
+  designer: Designer;
   images: Image[];
 }
 export interface Image {
@@ -31,8 +31,9 @@ export interface Size {
   value: string;
 }
 
-export interface Color {
+export interface Designer {
   id: string;
   name: string;
-  value: string;
+  website: string;
+  patreon?: string;
 }

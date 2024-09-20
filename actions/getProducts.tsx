@@ -6,7 +6,7 @@ const URL = `${process.env.NEXT_PUBLIC_API_URL}/products`;
 
 type Query = {
   categoryId?: string;
-  colorId?: string;
+  designerId?: string;
   sizeId?: string;
   isFeatured?: boolean;
 };
@@ -15,7 +15,7 @@ export default async function getProducts(query: Query) {
   const url = qs.stringifyUrl({
     url: URL,
     query: {
-      colorId: query.colorId,
+      designerId: query.designerId,
       sizeId: query.sizeId,
       categoryId: query.categoryId,
       isFeatured: query.isFeatured,
@@ -26,5 +26,4 @@ export default async function getProducts(query: Query) {
   });
 
   return res.json() as Promise<Product[]>;
-  // return [];
 }

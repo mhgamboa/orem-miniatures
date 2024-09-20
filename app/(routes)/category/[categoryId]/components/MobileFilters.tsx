@@ -8,14 +8,14 @@ import Button from "@/components/ui/Button";
 import IconButton from "@/components/ui/IconButton";
 import Filter from "./Filter";
 
-import { Color, Size } from "@/types";
+import { Designer, Size } from "@/types";
 
 type Props = {
   sizes: Size[];
-  colors: Color[];
+  designers: Designer[];
 };
 
-export default function MobileFilters({ sizes, colors }: Props) {
+export default function MobileFilters({ sizes, designers }: Props) {
   const [open, setOpen] = useState(false);
 
   const onOpen = () => setOpen(true);
@@ -41,7 +41,7 @@ export default function MobileFilters({ sizes, colors }: Props) {
             {/* Render the filters */}
             <div className="p-4">
               <Filter valueKey="sizeId" name="Sizes" data={sizes} />
-              <Filter valueKey="colorId" name="Colors" data={colors} />
+              <Filter valueKey="designerId" name="Designers" data={designers} />
             </div>
           </DialogPanel>
         </div>

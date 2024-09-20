@@ -30,7 +30,6 @@ export default function ProductCard({ data }: Props) {
 
   const onAddToCart: MouseEventHandler<HTMLButtonElement> = e => {
     e.stopPropagation();
-    console.log(data);
     cart.addItem(data);
   };
 
@@ -54,8 +53,6 @@ export default function ProductCard({ data }: Props) {
       {/* Price */}
       <div className="flex items-center justify-between">
         <Currency value={data.price} />
-        {/* <p className="text-2xl font-semibold">${data.price}</p>
-        <p className="text-sm text-gray-500">${data.price * data.quantity}</p> */}
       </div>
     </div>
   );
