@@ -5,7 +5,7 @@ import { Product } from "@/types";
 import { toast } from "sonner";
 
 interface CartStore {
-  items: Product[];
+  items: { product: Product; quantity: number }[];
   addItem: (data: Product) => void;
   removeItem: (id: string) => void;
   removeAll: () => void;
@@ -17,14 +17,24 @@ const useCart = create(
       items: [],
       addItem: data => {
         const currentItems = get().items;
-        const existingItem = currentItems.find(item => item.id === data.id);
-        if (existingItem) return toast("Item already in cart");
+        const existingItem = currentItems.find(item => item.product?.id === data.id);
 
-        set({ items: [...get().items, data] });
-        toast("Item added to cart");
+        if (existingItem) {
+          existingItem.quantity++;
+          set({ items: currentItems });
+          toast.success("Item added to cart");
+          return;
+        }
+        set({ items: [...get().items, { product: data, quantity: 1 }] });
+        toast.success("Item added to cart");
       },
+
       removeItem: id => {
-        set({ items: [...get().items.filter(item => item.id !== id)] });
+        const currentItems = get().items;
+        const index = currentItems.findIndex(item => item.product?.id === id);
+        if (index === -1) return;
+        currentItems[index].quantity--;
+        set({ items: currentItems });
         toast.success("Item removed from cart");
       },
       removeAll: () => set({ items: [] }),

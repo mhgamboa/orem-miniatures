@@ -19,9 +19,14 @@ export default function NavbarActions() {
 
   return (
     <div className="ml-auto flex items-center gap-x-4">
-      <Button onClick={() => router.push("/cart")} className="flex items-center bg-full bg-black px-4 py-2">
+      <Button
+        onClick={() => router.push("/cart")}
+        className="flex items-center bg-full bg-black px-4 py-2"
+      >
         <ShoppingBag size={20} color="white" />
-        <span className="ml-2 text-sm font-md text-white">{cart.items.length}</span>
+        <span className="ml-2 text-sm font-md text-white">
+          {cart.items.reduce((acc, item) => acc + item.quantity, 0)}
+        </span>
       </Button>
     </div>
   );

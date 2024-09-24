@@ -15,6 +15,7 @@ export default function CartPage() {
   }, []);
 
   if (!isMounted) return null;
+  console.log(cart.items);
   return (
     <div className="bg-white">
       <Container>
@@ -25,7 +26,7 @@ export default function CartPage() {
               {cart.items.length === 0 && <p className="text-neutral-500">Your cart is empty</p>}
               <ul>
                 {cart.items.map(item => (
-                  <CartItem key={item.id} data={item} />
+                  <CartItem key={item.product?.id} data={item.product} />
                 ))}
               </ul>
             </div>
@@ -33,6 +34,7 @@ export default function CartPage() {
           </div>
         </div>
       </Container>
+      <button onClick={cart.removeAll}>Remove all</button>
     </div>
   );
 }
