@@ -15,7 +15,6 @@ export default function CartPage() {
   }, []);
 
   if (!isMounted) return null;
-  console.log(cart.items);
   return (
     <div className="bg-white">
       <Container>

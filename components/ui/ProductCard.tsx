@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import { Product } from "@/types";
 import IconButton from "@/components/ui/IconButton";
-import { Expand, ShoppingCart } from "lucide-react";
+import { Expand, Minus, Plus, ShoppingCart } from "lucide-react";
 import Currency from "@/components/ui/Currency";
 import { useRouter } from "next/navigation";
 import usePreviewModal from "@/hooks/usePreviewModal";
@@ -31,6 +31,11 @@ export default function ProductCard({ data }: Props) {
   const onAddToCart: MouseEventHandler<HTMLButtonElement> = e => {
     e.stopPropagation();
     cart.addItem(data);
+  };
+
+  const onRemoveFromCart: MouseEventHandler<HTMLButtonElement> = e => {
+    e.stopPropagation();
+    cart.removeItem(data.id);
   };
 
   return (
@@ -64,6 +69,27 @@ export default function ProductCard({ data }: Props) {
       {/* Price */}
       <div className="flex items-center justify-between">
         <Currency value={data.price} />
+      </div>
+      <div className="flex items-center justify-between">
+        {(() => {
+          const cartItem = cart.items.find(item => item.product?.id === data.id);
+          const quantity = cartItem?.quantity ?? 0;
+
+          if (quantity > 0)
+            return (
+              <>
+                <IconButton
+                  onClick={onRemoveFromCart}
+                  icon={<Minus size={10} className="text-gray-600" />}
+                />
+                <p className="text-sm text-gray-500">{quantity}</p>
+                <IconButton
+                  onClick={onAddToCart}
+                  icon={<Plus size={10} className="text-gray-600" />}
+                />
+              </>
+            );
+        })()}
       </div>
     </div>
   );

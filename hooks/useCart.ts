@@ -34,6 +34,7 @@ const useCart = create(
         const index = currentItems.findIndex(item => item.product?.id === id);
         if (index === -1) return;
         currentItems[index].quantity--;
+        if (currentItems[index].quantity <= 0) currentItems.splice(index, 1);
         set({ items: currentItems });
         toast.success("Item removed from cart");
       },
