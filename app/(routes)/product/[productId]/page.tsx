@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata, ResolvingMetadata } from "next";
 
 import getProduct from "@/actions/getProduct";
 import getProducts from "@/actions/getProducts";
@@ -12,6 +13,18 @@ type Props = {
     productId: string;
   };
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { productId: string };
+}): Promise<Metadata> {
+  const product = await getProduct(params.productId);
+
+  return {
+    title: `${product.name} - Orem Miniatures`,
+  };
+}
 
 export default async function ProductPage({ params }: Props) {
   const product = await getProduct(params.productId);
