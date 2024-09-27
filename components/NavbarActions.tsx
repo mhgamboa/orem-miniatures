@@ -13,7 +13,7 @@ export default function NavbarActions() {
 
   useEffect(() => {
     setIsMounted(true);
-  });
+  }, []);
 
   if (!isMounted) return null;
 

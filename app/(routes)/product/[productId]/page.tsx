@@ -1,5 +1,5 @@
 import React from "react";
-import type { Metadata, ResolvingMetadata } from "next";
+import type { Metadata } from "next";
 
 import getProduct from "@/actions/getProduct";
 import getProducts from "@/actions/getProducts";

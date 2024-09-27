@@ -2,8 +2,7 @@
 import React, { MouseEventHandler } from "react";
 import Image from "next/image";
 
-import { toast } from "sonner";
-import { Minus, Plus, X } from "lucide-react";
+import { Minus, Plus } from "lucide-react";
 
 import IconButton from "@/components/ui/IconButton";
 import Currency from "@/components/ui/Currency";
@@ -16,7 +15,7 @@ type Props = {
 export default function CartItem({ data }: Props) {
   const cart = useCart();
 
-  const onRemove = () => cart.removeItem(data.id);
+  // const onRemove = () => cart.removeItem(data.id);
   const onAddToCart: MouseEventHandler<HTMLButtonElement> = e => {
     e.stopPropagation();
     cart.addItem(data);
